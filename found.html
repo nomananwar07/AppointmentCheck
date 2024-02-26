@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="de" xml:lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<title>Termine Städteregion Aachen - Ausländerbehörde -</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="styles/web/basis/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/fontawesome/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/leaflet.css" rel="stylesheet">
+<script src="app/js/leaflet.js"></script>
+<script src="app/js/jquery-3.6.0.min.js" type="text/javascript"></script>
+<link href="styles/web/basis/css/jquery-ui_1.13.1.css" rel="stylesheet"/>
+<script src="app/js/jquery-ui_1.13.1.min.js"></script>
+<link href="styles/web/basis/css/Font.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/tvo.css?cache_buster=1658740077" rel="stylesheet" type="text/css">
+<link href="styles/web/tevis011/css/custom.css?cache_buster=1658392733" rel="stylesheet" type="text/css">
+<!--###KONTRASTSTYLE###-->
+<script src="styles/web/basis/css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="app/js/tvweb.js?cache_buster=1658740077" type="text/javascript"></script>
+<script src="scripts/web/basis/javascript/basis.js" type="text/javascript"></script>
+<script src="scripts/web/basis/javascript/calendar.js" type="text/javascript"></script>
+<script src="app/js/js.cookie.js" type="text/javascript"></script>
+<link href="images/favicon.gif" rel="icon" type="image/x-icon">
+<script src="app/js/customA11ySelect.js"></script>
+</link></link></link></link></meta></head>
+<body class="TEVISWEB">
+<div id="cookie_msg">
+<span style="" tabindex="1">Diese Website verwendet Cookies - nähere Informationen dazu und zu Ihren Rechten als Benutzer finden Sie in unserer Datenschutzerklärung.</span>
+<input aria-label="Cookie-Verwendung akzeptieren" class="btn" id="cookie_msg_btn_yes" type="button" value="Akzeptieren"/>
+<input aria-label="Cookie-Verwendung ablehnen" class="btn" id="cookie_msg_btn_no" type="button" value="Ablehnen"/>
+<a href="#" onclick="showFooterModals('privacy', $(this).text())">Datenschutzerklärung</a>
+</div>
+<nav class="mainheader" role="navigation">
+<div style="margin-top:-17px;">
+<a class="unsichtbar" href="#inhalt" style="margin-top:-10px;">Hauptregion der Seite anspringen</a><nav aria-label="Einstellungen" aria-labelledby="Einstellungen-Label" role="navigation"><p class="menuEinstellung" id="Einstellungen-Label">Einstellungen</p><ul class="disclosure-nav" id="exTest">
+<li>
+<button aria-label="Kontrast an" class="NavigationButton nomenu" languagean="Kontrast an" languageaus="Kontrast aus" style="height: 100% !important;" title="Kontrast an">
+<img alt="Icon Kontrast" aria-hidden="true" focusable="false" src="styles/web/basis/images/contrast_low_black.svg" width="29px"/>
+<img alt="Icon Kontrast" aria-hidden="true" focusable="false" src="styles/web/basis/images/contrast_low_white.svg" width="29px"/>
+</button>
+</li>
+<li>
+<button aria-controls="id_lang_menu" aria-expanded="false" aria-label="Sprachwahl" class="languageSelect" title="Sprachwahl">
+<img alt="Icon Sprachwahl" aria-hidden="true" focusable="false" src="styles/web/basis/images/language_black.svg" width="29px"/>
+<img alt="Icon Sprachwahl" aria-hidden="true" focusable="false" src="styles/web/basis/images/language_white.svg" width="29px"/>
+</button>
+<ul id="id_lang_menu" style="display:none;">
+<li role="menuitem"><label class="contrast" role="lang_select"><a aria-label="Sprachwahl vereinfachte Sprache" class="lang_link" href="https://termine.staedteregion-aachen.de/auslaenderamt/?lang=de_VS&amp;rs">vereinfachte Sprache</a></label></li></ul></li></ul></nav>
+</div>
+</nav>
+<div id="banner">
+</div>
+<!--##LANGUAGE_MENU##-->
+<!--##CORONA_LOGOUT##-->
+<main class="container wrapper">
+<script type="application/javascript">
+            $(document).ready(function() {
+                //links unten rechts in der karte nicht mit tastatur erreichbar:
+                $(".leaflet-bottom.leaflet-right").find("a").attr("tabindex", "-1");
+                //elemente unten rechts in der karte nicht für screenreader sichtbar
+                $(".leaflet-bottom.leaflet-right").attr("aria-hidden", "true");
+                $(".leaflet-bottom.leaflet-right").find(".leaflet-control").attr("aria-hidden", "true");
+                $(".leaflet-bottom.leaflet-right").find("a").attr("aria-hidden", "true");
+                //und noch etwas stuff für die Karte hinsichtlich barrierefreiheit: images bekommen ein alt-attribut (vorgeschrieben bei bitv)
+                $("#map_loading").attr("alt", "Karte mit den Standorten");
+                $(".leaflet-marker-icon").attr("alt", "Standortmarker");
+                $("img.leaflet-tile").attr("alt", "Kartendarstellungselement");
+                $("img.leaflet-marker-shadow").attr("alt", "Bild zum Darstellen der Schatten der Standortmarker")
+                
+                document.addEventListener("keydown", function(){
+                    if( document.activeElement.id == "TevisDialog" && document.activeElement.className == "modal fade in" ){
+                        document.getElementById("closeButton").children[0].focus();
+                    }
+                });
+                
+                var form;
+                var formSubmit = false;
+                var formShowModal = true;
+    
+                $("#TevisDialog .modal-footer .btn-ok").on("click", function () {
+                    if( formSubmit == true ) {
+                        $("button[type=submit], input[type=submit]").prop("disabled", true);
+    
+                        formShowModal = false;
+                        formSubmit = false;
+                        form.submit();
+                    }
+                });
+    
+                $(".suggestion_form").submit(function(event) {
+                    if( formShowModal == true ) {
+                        var date = event.target.querySelector("input[name=date]").value;
+                        var reverseDate = date.substring(6,8) + "." + date.substring(4,6) + "." + date.substring(0,4);
+                        var time = event.target.querySelector("button").title;
+                        var day = event.target.querySelector("input[name=day]").value;
+                        var days = ["Sonntag","Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+                        day = days[day];
+                   
+                        form = $(this);
+                        
+                        var loc_selected = "";
+                        if( $("#location_details_hidden").length > 0 )
+                            loc_selected = $("#location_details_hidden").val();
+                        else
+                            loc_selected = $("select[name=loc] option:selected").text();
+                        
+                        var loc_parts = [];
+                        $.each(loc_selected.split(","), function(){
+                            loc_parts.push( $.trim( this ) );
+                        });
+                        var loc_details = loc_parts.join("<br/>");
+    
+                        var modalContent = "<h3>Sie haben folgenden Standort gewählt:</h3>";
+                            modalContent += "<p class=\"margin-left10\">" + loc_details + "</p>";
+                            modalContent += "<h3> Sie haben folgenden Termin gewählt:</h3>";
+                            modalContent += "<p class=\"margin-left10\">" + day + ", den " + reverseDate + " um " + time + " Uhr </p><br>";
+                            modalContent += "<p class=\"bold\">Möchten Sie mit diesen Eingaben fortfahren?</p>";
+                        
+                        $("#TevisDialog .modal-body").html(modalContent);
+
+                        formSubmit = true;
+                        $("#TevisDialog").modal();
+                        event.preventDefault();
+                    }
+                });
+            });
+        </script>
+<div class="content content--mdt">
+<div class="wizard" role="banner">
+<div class="wizard-inner">
+<ul aria-hidden="true" class="nav nav-tabs" role="tablist">
+<li class="done" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">1</span>
+</li>
+<li class="done" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">2</span>
+</li>
+<li class="active" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="Unsere Vorschläge für Sie" data-placement="bottom" data-toggle="popover" data-trigger="hover">3</span>
+</li>
+<li class="disabled" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">4</span>
+</li>
+<li class="disabled" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">5</span>
+</li>
+</ul>
+<div id="inhalt">
+<h1> Schritt 3: Unsere Vorschläge für Sie </h1>
+<div aria-label="Informationsbox" id="info_accordion">
+<h3> Übersicht zu Ihrem Termin</h3>
+<div><div class="infobox_row"><div class="infobox_col1"><span class="infobox_text"> Funktionseinheit:</span></div><div class="infobox_col2">Aufenthaltsangelegenheiten</div></div><div class="infobox_row"><div class="infobox_col1"><span class="infobox_text"> Anliegen:</span></div><div class="infobox_col2"><ul id="info_box_cnc_list"><li>1 <span aria-label="Mal">x</span> FH Studenten</li></ul></div></div><div class="infobox_row"><div class="infobox_col1"><span class="infobox_text"> Standort:</span></div><div class="infobox_col2"><span class="visuallyhidden"> noch nicht gesetzt</span></div></div><div class="infobox_row"><div class="infobox_col1"><span class="infobox_text"> Termin:</span></div><div class="infobox_col2"><span class="visuallyhidden"> noch nicht gesetzt</span></div></div><div class="infobox_row"><div class="infobox_col1"><span class="infobox_text"> Persönliche Daten:</span></div><div class="infobox_col2"><span class="visuallyhidden"> noch nicht gesetzt</span></div></div></div><!--ende div infobox items-->
+</div>
+</div><!--ende div inhalt-->
+</div><!-- ende div wizard-inner-->
+</div><!--ende div wizard-->
+<script>
+                $(document).ready(function(){
+                    var title = document.title.split("Schritt");
+                    var titleNeu = title[0] + " - " + $("h1:not(#Einstellungen-Label)").html();
+                    document.title= titleNeu;
+                    var lang = "de_DE"
+                    lang = lang.split('_')[0];
+                    if(lang !="vs"){ //nicht vereinfachte Sprache -> lang-Attribut setzen
+                        $('html').attr('lang', lang);
+                        $('html').attr('xml:lang', lang);
+                    }else{ //vereinfachte Sprache -> de nehmen
+                        $('html').attr('lang', 'de');
+                        $('html').attr('xml:lang', 'de');
+                    }
+                });
+            </script>
+<br/><div class="header"><h1>Standort:</h1></div>
+<nav aria-label="Sprunglink" role="navigation" style=" margin-top:-10px" tabindex="-1"><p><a class="unsichtbar" href="#filter_accordion">Bereich Vorschläge filtern anspringen; Kartendarstellung des Standorts überspringen</a></p></nav>
+<div class="locationOn">
+<div class="info">
+<p class="hint">Für Ihre Auswahl steht folgender Standort zur Verfügung:</p>
+</div>
+<div id="loc_map"><img alt="loading-icon" id="map_loading" src="https://termine.staedteregion-aachen.de/auslaenderamt/styles/web/basis/images/loader.gif"/></div><script>showMap({"0":{"0":"Hackl\u00e4nderstrasse 1","1":"52064","2":"Aachen","3":"Ausl\u00e4nderamt Aachen - FH Aachen\t","4":"6","5":"50.76865","6":"6.091892"}}, "suggest");</script><div id="map_legend"><div class="map_legend_entry"><img alt="gelber Pin für Ihren aktuellen Standort" aria-hidden="true" class="map_legend_icon" src="styles/web/basis/images/marker-icon-gold.png"/><p aria-hidden="true" class="map_legend_text_2_lines">Ihr aktueller Standort<br/>(kann ggf. abweichen)</p></div><div class="map_legend_entry"><img alt="roter Pin für ausgewählten Standort" aria-hidden="true" class="map_legend_icon" src="styles/web/basis/images/marker-icon-red.png"/><p aria-hidden="true" class="map_legend_text">Ausgewählter Standort</p></div><div class="map_legend_entry"><img alt="blauer Pin für alternativen Standort" aria-hidden="true" class="map_legend_icon" src="styles/web/basis/images/marker-icon-blue.png"/><p aria-hidden="true" class="map_legend_text">Alternativer Standort</p></div></div>
+<p id="selectLocation" style="color: #000;">
+<strong>Ausländeramt Aachen - FH Aachen	</strong><br>
+                            Hackländerstrasse 1<br>
+                            52064 Aachen
+                            <br/><br/><b>Standortinformation:</b><br> <span id="location_infotext"><p>
+	Bitte kommen Sie ca. 10 Minuten vor der gebuchten Zeit.<br/>
+	Bitte melden Sie sich auf der 2. Etage in Zimmer 215 an.</p>
+</span>
+</br></br></br></p>
+<hr/>
+<input id="location_details_hidden" type="hidden" value="Ausländeramt Aachen - FH Aachen	, Hackländerstrasse 1, 52064 Aachen"/>
+</div>
+<h1>Terminvorschläge:</h1>
+<div id="filter_accordion">
+<h3 title="Vorschläge filtern">Vorschläge filtern</h3>
+<div>
+<form action="" id="suggest_filter_form" method="get">
+<input name="loc" type="hidden" value="6"/>
+<input name="mdt" type="hidden" value="0"><input name="cnc-80" type="hidden" value="1"/>
+<label for="suggest_date_wrap"><b>Zeitraum</b></label>
+<div id="suggest_date_wrap">
+<label for="filter_date_from" title="Filter für den Zeitraum von">Von:</label>
+<input class="suggest_date" id="filter_date_from" name="filter_date_from" readonly="" type="text" value="15.09.2022"/>
+<label for="filter_date_to" id="filterlabel" style="margin-left:20px;" title="Filter für den Zeitraum bis">Bis: </label>
+<input class="suggest_date" id="filter_date_to" name="filter_date_to" readonly="" type="text" value="13.11.2022"/>
+</div>
+<script src="app/js/datepicker-ac.js"></script>
+<script src="app/js/datepicker-de.js"></script>
+<script>
+                        month = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+                        $( "#filter_date_from, #filter_date_to" ).datepicker({
+                            showOn: 'button',
+                            buttonText: "Öffnen des Kalenders",
+                            buttonImage: "styles/web/basis/images/calendar.svg",
+                            buttonImageOnly: false,
+                            dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+                            dayNamesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+                            dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+                            monthNames: month,//["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+                            monthNamesShort: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+                            weekHeader: "KW",
+                            dateFormat: "dd.mm.yy",
+                            firstDay: 1,
+                            onClose: removeAria,
+                            showButtonPanel: true,
+                            closeText: "Schließen",
+                            goToCurrent: false,
+                            prevText: "Zurück",
+                            nextText: "Vor",
+                            currentText: "Heute",
+                            minDate: new Date( 2022, 09 - 1, 15 ),
+                            maxDate: new Date( 2022, 11 - 1, 13 ),
+                            onSelect: function (date) {
+                                var myDT = $.datepicker.parseDate( $(this).datepicker("option", "dateFormat"), date );
+                                var ariaDate = $.datepicker.formatDate("DD, dd. MM yy", myDT);
+                                $(this).attr("aria-label", ariaDate);
+
+                                var date1 = $('#filter_date_from').datepicker('getDate');
+                                var date2 = $('#filter_date_to').datepicker('getDate');
+
+                                if( date1 > date2 ){
+                                    if( $(this).attr('id') == 'filter_date_from' ){
+                                        $('#filter_date_to').datepicker('setDate', date1);
+                                        $('#filter_date_from').datepicker('setDate', date2);
+                                    }else{
+                                        $('#filter_date_to').datepicker('setDate', date1);
+                                        $('#filter_date_from').datepicker('setDate', date2);
+                                    }
+                                }
+                            }
+                        });
+                        
+                        $('.ui-datepicker-trigger').click(
+                        function(){
+                        	var input = this.previousElementSibling;
+                            setTimeout(function(){
+                                var today = document.querySelector( ".ui-datepicker-today a" );
+                                //falls nicht sichtbar (weil z.b. im Monat davor), dann das maximale Datum fokussieren.
+                                if (!today) {
+                                    today = $('a.ui-state-active')[0] ||$('a.ui-state-default')[0];
+                                }
+                                
+                                //aria-hide des primären Anzeige-containers, solange der Datepicker geöffnet
+                                $("div:not(#ui-datepicker-div):not(.ui-datepicker-header, .ui-datepicker-title)").attr("aria-label", "hidden");
+                                document.getElementById('ui-datepicker-div').style.zIndex="1000";
+                                $(".ui-datepicker-prev").attr("tabindex", "1");
+                                $(".ui-datepicker-next").attr("tabindex", "1");
+                                today.focus();
+                                datePickHandler(input, "Anzeige des Kalender-Datepickers", "Kalender schließen", "Schließen", month, "Nächster Monat: ", "Voriger Monat: ");
+                                $(".ui-datepicker-current").attr("style", "display:none");
+                                $(".ui-datepicker-today").children().attr("style", "background:yellow");
+                                $(".ui-datepicker-today").children().attr("style", "color:block");
+                                $(document).on("click", "#ui-datepicker-div .ui-datepicker-close", function(){
+                                    closeCalendar();
+                                });
+                            },0);
+                        })//end function buttonClicked
+                    </script>
+<div id="suggest_filter_timespan">
+<h4 title="Zeitbereich">Zeitbereich</h4>
+<div id="panel_zeitbereich">
+<div>
+<label for="filter_timespan-14" style="font-size: 1.5em; margin-bottom: 4px; margin-top: 4px;vertical-align: middle;">
+<input id="filter_timespan-14" name="filter_timespan[]" style="left: -20000px;" title="14 Uhr bis 15 Uhr" type="checkbox" value="14"/>
+<span></span>
+<span style="font-size: 14px; padding-left: 50px; top: -4px; position: relative;" title="14 Uhr bis 15 Uhr">14:00 - 15:00 </span>
+</label>
+</div>
+</div>
+</div>
+<div id="suggest_filter_weekday">
+<h4 title="Wochentag">Wochentag</h4>
+<div id="panel_wochentag">
+<div>
+<label for="filter_day-0" style="font-size: 1.5em; margin-bottom:4px; margin-top:4px;vertical-align:middle;">
+<input id="filter_day-0" name="filter_day[]" style="left: -20000px;" title="Montag" type="checkbox" value="0"/>
+<span></span>
+<span style="font-size: 14px; padding-left: 50px;top:-4px; position: relative;" title="Montag">Montag</span>
+</label>
+</div>
+</div>
+</div>
+<!--<a href="?suggest&mdt=0&cnc-80=1" aria-live="assertive" onclick="$(this).attr('aria-busy', true);">    -->
+<input aria-live="assertive" class="sel_button btn btn-primary fifty" name="suggest_reset" onclick="$(this).attr('aria-busy', true); window.location.href='?suggest&amp;mdt=0&amp;cnc-80=1'" style="float: left;" title="Zurücksetzen" type="button" value="Zurücksetzen"/>
+<!--</a>-->
+<input aria-live="assertive" class="sel_button btn btn-primary fifty" name="suggest_filter" onclick="$(this).attr('aria-busy', true);" style="float: right;" title="Filtern" type="submit" value="Filtern"/>
+</input></form>
+</div>
+</div>
+<hr>
+<strong><span class="suggest_info_msg">Hinweis: Ein Klick auf die Uhrzeit führt automatisch zum nächsten Schritt der Terminvergabe.</span></strong>
+<div id="sugg_accordion">
+<h3 title="Montag, 07.11.2022">Montag, 07.11.2022</h3>
+<div id="panel_1667775600">
+<table class="sugg_table">
+<tr>
+<th scope="row" style="text-align:left; white-space: nowrap; padding-right: 10px;">
+<span aria-hidden="true">14:00 - 15:00</span>
+<span class="invisible_text">14 Uhr bis 15 Uhr </span>
+</th>
+<td style="padding-right: 1px; padding-bottom: 1px;">
+<button class="suggest_btn btn btn-primary" disabled="" title="14:00" type="button">14:00</button>
+</td>
+<td style="padding-right: 1px; padding-bottom: 1px;">
+<form class="suggestion_form" method="post" style="margin-bottom: 0px;">
+<input name="start" type="hidden" value="870"/>
+<input name="end" type="hidden" value="900"/>
+<input name="day" type="hidden" value="1"/>
+<input name="block" type="hidden" value="2"/>
+<input name="hour" type="hidden" value="8"/>
+<input name="week" type="hidden" value="202245"/>
+<input name="date" type="hidden" value="20221107"/>
+<input name="cal" type="hidden" value="4"/>
+<button class="suggest_btn btn btn-primary" title="14:30" type="submit">14:30</button>
+</form>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top: 20px; display: inline-block; width: 100%;"><input alt="Zurück" aria-label="Zurück" class="sel_button btn btn-primary pull-left fifty" id="zurueck" onclick="historyGoBack('');" title="Zurück" type="button" value="Zurück"/></div>
+</hr></div>
+<div aria-label="Hinweisfenster" class="modal fade" data-backdrop="static" data-keyboard="false" id="TevisDialog" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button aria-label="Hinweisfenster schließen" class="close" data-dismiss="modal" id="closeButton" title="Hinweisfenster schließen" type="button"><span aria-hidden="true">×</span></button>
+<h1 class="modal-title" role="heading">Hinweis</h1>
+</div>
+<div class="modal-body"></div>
+<div class="modal-footer">
+<button class="sel_button btn btn-primary pull-right fifty btn-ok" data-dismiss="modal" type="button">Ja</button>
+<button class="sel_button btn btn-primary pull-left fifty btn-abort" data-dismiss="modal" type="button">Nein</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<footer class="tvweb_form" id="footer" role="footer">
+<nav class="nav navHelp" role="navigation">
+<div aria-label="Hinweisfenster" class="modal fade" id="footer_dialog" role="dialog" tabindex="-1"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button aria-label="Hinweisfenster schließen" class="close" data-dismiss="modal" id="closeButton" title="Hinweisfenster schließen" type="button"><span aria-hidden="true">×</span></button><h1 class="modal-title" role="heading">Titel</h1></div><div class="modal-body"><div id="modal_help"><ol style="padding-left: 15px;"><li><h3>Auswahl der Behörde</h3><p>Zunächst wählen Sie bitte die gewünschte Behörde aus den angebotenen Behörden aus.</p></li><li><h3>Auswahl des Anliegens</h3><p>Anschließend erhalten Sie die zur Behörde angebotenen Anliegen angezeigt, wählen Sie entsprechend aus.</p></li><li><h3>Terminauswahl</h3><p>Anschließend wird ein Kalender eingeblendet, aus dem die freien Zeiten hervorgehen. Rot gekennzeichnete Bereiche bedeuten, dass zu diesen Zeiten keine Termin vergeben werden können. Markieren Sie dann bitte ihren Terminwunsch mit einem Mausklick im Kalender. Der Bereich wird dann grün dargestellt. Die Angaben zum Terminwunsch werden unterhalb der Überschrift textlich angezeigt.<br/> Je nach Konfiguration kann es auch sein, dass anstatt des Kalenders, eine Seite mit Terminvorschlägen angezeigt wird. Die Vorschläge lassen sich nach Datum und Wochentag filtern. Bei Auswahl eines Termins werden Sie direkt auf die nächste Seite weitergeleitet.</p></li><li><h3>Persönliche Daten</h3><p>Es erscheint die Eingabemaske für ihre persönlichen Daten. Alle mit einem Sternchen (*) gekennzeichneten Felder sind Pflichtfelder und müssen ausgefüllt werden. Es besteht die Möglichkeit für spätere Anfragen die persönlichen Daten auf Ihrem PC zu speichern, eine erneute Angabe dieser Daten bei zukünftigen Anfragen ist dann nicht mehr erforderlich, abgesehen von evtl. Änderungen die dann erfolgen können wenn die neue Anfrage erzeugt wird. Setzen Sie dazu bitte einen Haken in das Feld Persönliche Daten für zukünftige Anfragen speichern. Bestätigen Sie die Anfrage, sofern nötig, nach der Eingabe des Sicherheitscodes, mit einem Klick auf 'Weiter'.</p></li><li><h3>Terminübersicht</h3><p>Abschließend erhalten Sie eine Übersicht über ihren ausgewählten Termin und können einen weiteren Termin reservieren.</p></li><li><h3>Bestätigungsmail</h3><p>Sie erhalten anschließend eine E-Mail in der Sie einen Bestätigungslink anklicken müssen. Erst nach der Bestätigung wird Ihr Termin an die Behörde übertragen.</p></li><li><h3>Rückmeldung Sachbearbeiter</h3><p>Ihre Anfrage wird dann in der Behörde geprüft und Sie erhalten eine weitere E-Mail, diesmal direkt vom Sachbearbeiter. Diese Mail enhält dann auch die Angaben zu ggf. beizubringenden Unterlagen.</p></li></ol></div><div id="modal_imprint"><h3>Link zu dem Impressum der StädteRegion Aachen:<br/>
+<a href="https://www.staedteregion-aachen.de/de/navigation/aemter/strassenverkehrsamt-a-36/fao-impressum-1" target="_blank">
+Impressum der StädteRegion Aachen</a></h3></div><div id="modal_privacy"><h3>Link zu der Datenschutzerklärung der StädteRegion Aachen:<br/>
+<a href="https://www.staedteregion-aachen.de/de/datenschutz-1" target="_blank">
+Datenschutzerklärung der StädteRegion Aachen</a></h3></div><div id="modal_accessibility"><h3>Die Erklärung wird erst mit dem Abschluss des BITV-Tests erstellt und dann an dieser Stelle angezeigt.</h3></div><div id="modal_session"><p>Ihre Sitzung läuft in einer Minute ab.</p><p>Für eine Verlängerung schließen Sie bitte dieses Fenster in den nächsten 60 Sekunden.</p></div></div><div class="modal-footer"><button class="sel_button btn btn-primary fifty btn-ok" data-dismiss="modal" type="button">Schliessen</button></div></div></div></div>
+<a aria-describedby="link-target-text" href="#" id="footer_link_help" onclick="showFooterModals('help', $(this).text())" title="Hilfe">Hilfe</a>
+<a aria-describedby="link-target-text" href="#" id="footer_link_imprint" onclick="showFooterModals('imprint', $(this).text())" title="Impressum">Impressum</a>
+<a aria-describedby="link-target-text" href="#" id="footer_link_privacy" onclick="showFooterModals('privacy', $(this).text())" title="Datenschutzerklärung">Datenschutzerklärung</a>
+<a aria-describedby="link-target-text" href="#" id="footer_link_accessibility" onclick="showFooterModals('accessibility', $(this).text())" title="Erklärung zur Barrierefreiheit">Erklärung zur Barrierefreiheit</a>
+<p class="visuallyhidden" id="link-target-text"> Öffnet im Dialogfenster.</p>
+</nav>
+<br><input id="session_reset_lifetime" type="hidden" value="1440"><div style="outline: none; padding-bottom: 15px;" tabindex="0">Ihre Sitzung läuft in <span id="session_reset_input">0</span> min ab</div><nav aria-label="Sprunglink" role="navigation" style="margin-top:-10px" tabindex="-1"><p><a class="unsichtbar" href="#inhalt">Hauptregion der Seite anspringen</a></p></nav>
+</input></br></footer>
+</main>
+</body>
+</html>

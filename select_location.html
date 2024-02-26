@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="de" xml:lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<title>Termine Städteregion Aachen - Ausländerbehörde -</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="styles/web/basis/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/fontawesome/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/leaflet.css" rel="stylesheet">
+<script src="app/js/leaflet.js"></script>
+<script src="app/js/osm2geojson-lite.js"></script>
+<script src="app/js/svg-icon.js"></script>
+<script src="app/js/jquery-3.6.0.min.js" type="text/javascript"></script>
+<link href="styles/web/basis/css/jquery-ui_1.13.2.css" rel="stylesheet"/>
+<script src="app/js/jquery-ui_1.13.2.min.js"></script>
+<link href="styles/web/basis/css/Font.css" rel="stylesheet"/>
+<link href="styles/web/basis/css/tvo.css?cache_buster=1702377597" rel="stylesheet" type="text/css">
+<link href="styles/web/tevis011/css/custom.css?cache_buster=1702377881" rel="stylesheet" type="text/css">
+<!--###KONTRASTSTYLE###-->
+<script src="styles/web/basis/css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="app/js/tvweb.js?cache_buster=1702377597" type="text/javascript"></script>
+<script src="scripts/web/basis/javascript/basis.js" type="text/javascript"></script>
+<script src="scripts/web/basis/javascript/calendar.js" type="text/javascript"></script>
+<script src="app/js/js.cookie.min.js" type="text/javascript"></script>
+<link href="data:," rel="icon"/>
+<script src="app/js/customA11ySelect.js"></script>
+<!--        <script type="text/javascript" src="app/js/conword_onload.js"></script>-->
+</link></link></link></meta></head>
+<body class="TEVISWEB">
+<div id="cookie_msg">
+<span style="" tabindex="1">Diese Website verwendet Cookies - nähere Informationen dazu und zu Ihren Rechten als Benutzer finden Sie in unserer Datenschutzerklärung.</span>
+<input aria-label="Cookie-Verwendung akzeptieren" class="btn" id="cookie_msg_btn_yes" type="button" value="Akzeptieren"/>
+<input aria-label="Cookie-Verwendung ablehnen" class="btn" id="cookie_msg_btn_no" type="button" value="Ablehnen"/>
+<a href="#" onclick="showFooterModals('privacy', $(this).text())">Datenschutzerklärung</a>
+</div>
+<nav aria-labelledby="Einstellungen-Label" class="mainheader" id="einstellungen-nav">
+<div style="margin-top:-17px;">
+<a class="unsichtbar" href="#inhalt" style="margin-top:-10px;">Hauptregion der Seite anspringen</a><p class="menuEinstellung" id="Einstellungen-Label">Einstellungen</p><ul class="disclosure-nav" id="exTest" role="menu">
+<li>
+<button aria-label="Kontrast an" class="NavigationButton nomenu" languagean="Kontrast an" languageaus="Kontrast aus" style="height: 100% !important;" title="Kontrast an">
+<img alt="Icon Kontrast" aria-hidden="true" focusable="false" src="styles/web/basis/images/contrast_low_black.svg" width="29px"/>
+<img alt="Icon Kontrast" aria-hidden="true" focusable="false" src="styles/web/basis/images/contrast_low_white.svg" width="29px"/>
+</button>
+</li>
+<li>
+<button aria-controls="id_lang_menu" aria-expanded="false" aria-label="Sprachwahl" class="languageSelect" title="Sprachwahl">
+<img alt="Icon Sprachwahl" aria-hidden="true" focusable="false" src="styles/web/basis/images/language_black.svg" width="29px"/>
+<img alt="Icon Sprachwahl" aria-hidden="true" focusable="false" src="styles/web/basis/images/language_white.svg" width="29px"/>
+</button>
+<ul id="id_lang_menu" style="display:none;"><li role="menuitem"><label class="contrast" id="lang_select_de_VS"><a aria-label="Sprachwahl vereinfachte Sprache" class="lang_link cnw_skip_translation" href="https://termine.staedteregion-aachen.de/auslaenderamt/?lang=de_VS&amp;rs">vereinfachte Sprache</a></label></li></ul></li></ul>
+</div>
+</nav>
+<div id="banner">
+</div>
+<!--##LANGUAGE_MENU##-->
+<!--##CORONA_LOGOUT##-->
+<main class="container wrapper">
+<div class="content content--mdt" id="inhalt">
+<div class="wizard" role="banner">
+<div class="wizard-inner">
+<ul aria-hidden="true" class="nav nav-tabs" role="presentation">
+<li class="done" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">1</span>
+</li>
+<li class="done" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">2</span>
+</li>
+<li class="active" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="Terminvorschläge - Standortauswahl" data-placement="bottom" data-toggle="popover" data-trigger="hover">3</span>
+</li>
+<li class="disabled" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">4</span>
+</li>
+<li class="disabled" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">5</span>
+</li>
+<li class="disabled" role="presentation">
+<span aria-hidden="true" class="round-tab" data-container="body" data-content="" data-placement="bottom" data-toggle="popover" data-trigger="hover">6</span>
+</li>
+</ul>
+<div>
+<h1> Schritt 3<span class="visuallyhidden"> von 6</span>: Terminvorschläge - Standortauswahl </h1>
+</div><!--ende div inhalt-->
+</div><!-- ende div wizard-inner-->
+</div><!--ende div wizard-->
+<details class="ui-accordion ui-widget ui-helper-reset" id="details_infobox" isopen="">
+<summary class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-active ui-state-active ui-accordion-icons" id="infobox_summary">
+<span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>Übersicht zu Ihrem Termin</summary>
+<div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="infobox_content">
+<dl class="grid" style="margin-bottom: 0px;"><dt><span class="infobox_text">Funktionseinheit</span></dt><dd class="">Aufenthaltsangelegenheiten</dd><dt><span class="infobox_text">Anliegen</span></dt><dd class=""><ul id="info_box_cnc_list"><li>1 <span class="visuallyhidden">Mal</span><span aria-hidden="true">x</span> Erteilung/Verlängerung Aufenthalt - Nachname: A - Z (Team 1)</li></ul></dd><dt><span class="infobox_text">Standort</span></dt><dd><span class="visuallyhidden">noch nicht gesetzt</span></dd><dt><span class="infobox_text">Termin</span></dt><dd><span class="visuallyhidden">noch nicht gesetzt</span></dd><dt><span class="infobox_text">Persönliche Daten</span></dt><dd><span class="visuallyhidden cnw_skip_translation">noch nicht gesetzt</span></dd></dl>
+</div>
+</details>
+<script>
+                $(document).ready(function(){
+                    var title = document.title.split("Schritt");
+                    var titleNeu = title[0] + " - " + $("h1:not(#Einstellungen-Label)").html();
+                    titleNeu = titleNeu.replace('<span class="visuallyhidden">', '');
+                    titleNeu = titleNeu.replace('</span>', '').trim();
+                    document.title= titleNeu;
+                    var lang = "de"
+                    lang = lang.split('_')[0];
+                    if( lang != "vs" ){ //nicht vereinfachte Sprache -> lang-Attribut setzen
+                        $('html').attr('lang', lang);
+                        $('html').attr('xml:lang', lang);
+                    }else{ //vereinfachte Sprache -> de nehmen
+                        $('html').attr('lang', 'de');
+                        $('html').attr('xml:lang', 'de');
+                    }
+                });
+            </script>
+<div class="header"><h2 class="h1like" style="display: inline-block;">Bitte wählen Sie den gewünschten Standort für Ihren Termin aus:</h2></div>
+<nav aria-label="Sprunglink" id="auswahl-nav" style=" margin-top:-10px" tabindex="-1">
+<p>
+<a class="unsichtbar" href="#zurueck">Zurück-Button anspringen</a>
+</p>
+</nav>
+<div>
+<div id="map_agreement"><p id="info_activate_map">Das Anzeigen der Karte erfordert das Laden externer Daten von Drittanbietern (OpenStreetMap, Nominatim, Overpass).</p><img alt="loading-icon" id="map_agreement_loading" src="https://termine.staedteregion-aachen.de/auslaenderamt/styles/web/basis/images/loader.gif"/><button aria-describedby="info_activate_map" class="btn" id="map_agreement_accept" onclick="map_agreement()">Karte anzeigen</button><script>function map_agreement(){$("#map_agreement_accept").hide();$("#map_agreement_loading").show();if(Cookies.get("tvo_map_agreement") == 1){showMap({'0':{'0':'Hackl\u00e4nderstra\u00dfe 1','1':'52064','2':'Aachen','3':'Ausl\u00e4nderamt Aachen, 2. Etage','4':'30','5':'50.768703','6':'6.091849'}}, 'suggest', []);}else{Cookies.set("tvo_map_agreement", 1, { secure: true, samesite: "None" } );window.location.reload();}}</script></div><div id="loc_map"><img alt="loading-icon" id="map_loading" src="https://termine.staedteregion-aachen.de/auslaenderamt/styles/web/basis/images/loader.gif"/></div><div id="map_legend"><div class="map_legend_entry"><div class="marker_local"></div><p aria-hidden="true" class="map_legend_text_2_lines">Ihr aktueller Standort<br/>(kann ggf. abweichen)</p></div><div class="map_legend_entry"><div class="marker_possible"></div><p aria-hidden="true" class="map_legend_text">Möglicher Standort</p></div></div><div id="map_marker_content-30" style="display: none;">
+<div class="cnw_skip_translation">
+<b>Ausländeramt Aachen, 2. Etage</b><br>
+        Hackländerstraße 1<br/>
+        52064 Aachen<br/>
+</br></div>
+<form method="post">
+<input name="loc" type="hidden" value="30"/>
+<input name="gps_lat" type="hidden" value="50.768703"/>
+<input name="gps_long" type="hidden" value="6.091849"/>
+<input class="btn btn-primary map_loc_btn" name="select_location" style="border: none!important" type="submit" value="Standort auswählen"/>
+</form>
+<a class="btn btn-primary map_loc_btn" href="https://www.google.de/maps/place/Hackländerstraße 1 52064 Aachen" role="button" target="_blank">Hierhin navigieren</a>
+</div>
+</div>
+<script>
+            function getLocation() {
+                if ( navigator.geolocation )
+                    navigator.geolocation.getCurrentPosition( calculateDistances );
+            }
+            $( document ).ready(function(){
+                getLocation();
+            });
+        </script>
+<details class="ui-accordion ui-widget ui-helper-reset" id="details_suggest_location" isopen="">
+<summary class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-active ui-state-active ui-accordion-icons" id="suggest_location_summary">
+<span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+<b>1:</b> Ausländeramt Aachen, 2. Etage
+            </summary>
+<div class="suggest_location_panel ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="suggest_location_content">
+<form method="post">
+<input name="loc" type="hidden" value="30"/>
+<input name="gps_lat" type="hidden" value="50.768703"/>
+<input name="gps_long" type="hidden" value="6.091849"/>
+<dl class="grid suggest_location_tbl">
+<dt>Name</dt><dd>Ausländeramt Aachen, 2. Etage</dd>
+<dt>Anschrift</dt><dd class="cnw_skip_translation">Hackländerstraße 1, 52064 Aachen</dd>
+<dt>Entfernung</dt><dd class="sugg_loc_distance"></dd><dt>Information</dt><dd><p>
+	Bitte kommen Sie ca. 10 Minuten vor der gebuchten Zeit<br/>
+	und nehmen Sie im Wartebereich auf der 2. Etage Platz.<br/>
+	Ihre Wartenummer wird automatisch auf der Anzeigetafel aufgerufen.</p></dd>
+</dl>
+<input aria-label="Ausländeramt Aachen, 2. Etage auswählen" class="btn btn-primary onehundred pull-right" name="select_location" type="submit" value="Ausländeramt Aachen, 2. Etage auswählen"/>
+</form>
+</div>
+</details>
+<div style="margin-top: 20px; display: inline-block; width: 100%;">
+<input aria-label="Zurück zu den Anliegen" class="sel_button btn btn-primary pull-left fifty" id="zurueck" onclick="historyGoBack('select2?md=1');" title="Zurück zu den Anliegen" type="button" value="Zurück zu den Anliegen"/>
+</div>
+</div>
+<footer class="tvweb_form" id="footer">
+<nav aria-labelledby="footernavlabel" class="nav navHelp" id="footer-nav">
+<p class="visuallyhidden" id="footernavlabel">Links zur Hilfe, Impressum, Datenschutzerklärung, Erklärung zur Barrierefreiheit</p>
+<div aria-label="Hinweisfenster" class="modal fade" id="footer_dialog" role="dialog" tabindex="-1"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button aria-label="Hinweisfenster schließen" autofocus="" class="close" data-dismiss="modal" id="closeButton" title="Hinweisfenster schließen" type="button"><span aria-hidden="true">×</span></button><h1 class="modal-title">Titel</h1></div><div class="modal-body"><div id="modal_help"><ol style="padding-left: 15px;"><li><h3>Auswahl der Behörde</h3><p>Zunächst wählen Sie bitte die gewünschte Behörde aus den angebotenen Behörden aus.</p></li><li><h3>Auswahl des Anliegens</h3><p>Anschließend erhalten Sie die zur Behörde angebotenen Anliegen angezeigt, wählen Sie entsprechend aus.</p></li><li><h3>Terminauswahl</h3><p>Anschließend wird ein Kalender eingeblendet, aus dem die freien Zeiten hervorgehen. Rot gekennzeichnete Bereiche bedeuten, dass zu diesen Zeiten keine Termin vergeben werden können. Markieren Sie dann bitte ihren Terminwunsch mit einem Mausklick im Kalender. Der Bereich wird dann grün dargestellt. Die Angaben zum Terminwunsch werden unterhalb der Überschrift textlich angezeigt.<br/> Je nach Konfiguration kann es auch sein, dass anstatt des Kalenders, eine Seite mit Terminvorschlägen angezeigt wird. Die Vorschläge lassen sich nach Datum und Wochentag filtern. Bei Auswahl eines Termins werden Sie direkt auf die nächste Seite weitergeleitet.</p></li><li><h3>Persönliche Daten</h3><p>Es erscheint die Eingabemaske für ihre persönlichen Daten. Alle mit einem Sternchen (*) gekennzeichneten Felder sind Pflichtfelder und müssen ausgefüllt werden. Es besteht die Möglichkeit für spätere Anfragen die persönlichen Daten auf Ihrem PC zu speichern, eine erneute Angabe dieser Daten bei zukünftigen Anfragen ist dann nicht mehr erforderlich, abgesehen von evtl. Änderungen die dann erfolgen können wenn die neue Anfrage erzeugt wird. Setzen Sie dazu bitte einen Haken in das Feld Persönliche Daten für zukünftige Anfragen speichern. Bestätigen Sie die Anfrage, sofern nötig, nach der Eingabe des Sicherheitscodes, mit einem Klick auf 'Weiter'.</p></li><li><h3>Terminübersicht</h3><p>Abschließend erhalten Sie eine Übersicht über ihren ausgewählten Termin und können einen weiteren Termin reservieren.</p></li><li><h3>Bestätigungsmail</h3><p>Sie erhalten anschließend eine E-Mail in der Sie einen Bestätigungslink anklicken müssen. Erst nach der Bestätigung wird Ihr Termin an die Behörde übertragen.</p></li><li><h3>Rückmeldung Sachbearbeiter</h3><p>Ihre Anfrage wird dann in der Behörde geprüft und Sie erhalten eine weitere E-Mail, diesmal direkt vom Sachbearbeiter. Diese Mail enhält dann auch die Angaben zu ggf. beizubringenden Unterlagen.</p></li></ol></div><div id="modal_imprint"><h3>Link zu dem Impressum der StädteRegion Aachen:<br/>
+<a href="https://www.staedteregion-aachen.de/de/navigation/aemter/auslaenderamt-a-33/vois-tevis-impressum" target="_blank">
+Impressum der StädteRegion Aachen</a></h3>
+</div><div id="modal_privacy"><h3>Link zu der Datenschutzerklärung der StädteRegion Aachen:<br/>
+<a href="https://www.staedteregion-aachen.de/de/datenschutz-1" target="_blank">
+Datenschutzerklärung der StädteRegion Aachen</a></h3></div><div id="modal_accessibility"><a href="https://report.bitvtest.de/691ac4fa-85b1-4391-9eef-20f2b0550aa2.html" target="_blank" title="Zum BITV-Test Prüfbericht. Link öffnet in neuem Fenster.">
+<img alt="BIK - BITV-konform (geprüfte Seiten), zum Prüfbericht" height="44" src="https://www.bitvtest.de/fileadmin/user_upload/bik-bitv-konform-h44px.svg" width="135">
+</img></a></div><div id="modal_session"><p>Ihre Sitzung läuft in einer Minute ab.</p><p>Für eine Verlängerung schließen Sie bitte dieses Fenster in den nächsten 60 Sekunden.</p></div></div><div class="modal-footer"><button class="sel_button btn btn-primary fifty btn-ok" data-dismiss="modal" type="button">Schliessen</button></div></div></div></div>
+<ul id="footer_links">
+<li><a aria-describedby="link-target-text" href="#" id="footer_link_help" onclick="showFooterModals('help', $(this).text())" title="Hilfe">Hilfe</a></li>
+<li><a aria-describedby="link-target-text" href="#" id="footer_link_imprint" onclick="showFooterModals('imprint', $(this).text())" title="Impressum">Impressum</a></li>
+<li><a aria-describedby="link-target-text" href="#" id="footer_link_privacy" onclick="showFooterModals('privacy', $(this).text())" title="Datenschutzerklärung">Datenschutzerklärung</a></li>
+<li><a aria-describedby="link-target-text" href="#" id="footer_link_accessibility" onclick="showFooterModals('accessibility', $(this).text())" title="Erklärung zur Barrierefreiheit">Erklärung zur Barrierefreiheit</a></li>
+<!--##USAGE_FEEDBACK_URL##-->
+<!--##NEW_RESERVATION_URL##-->
+</ul>
+<p class="visuallyhidden" id="link-target-text"> Öffnet im Dialogfenster.</p>
+</nav>
+<br><input id="session_reset_lifetime" type="hidden" value="1440"><input id="session_warning_str" type="hidden" value="Warnung"/><input id="infofenster_str" type="hidden" value="Infofenster: "/><div style="outline: none; padding-bottom: 15px;" tabindex="0"><p>Ihre Sitzung läuft aus in <span id="session_reset_input">0</span> minuten</p></div><nav aria-label="Sprunglink" id="inhalt-nav" style="margin-top:-10px" tabindex="-1"><p><a class="unsichtbar" href="#inhalt">Hauptregion der Seite anspringen</a></p></nav>
+</input></br></footer>
+</main>
+</body>
+</html>
