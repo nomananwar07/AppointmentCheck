@@ -1,6 +1,7 @@
 import datetime
 import time
 
+from selenium.common import exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -10,7 +11,9 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 def Check_appointment():
     option = webdriver.ChromeOptions()
-    # option.add_argument("start-maximized")
+    # option.add_argument("start-minimized")
+    # option.add_argument('--headless')
+    # option.add_argument('--disable-gpu')
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
 
@@ -27,15 +30,26 @@ def Check_appointment():
 
     for i in range(len(urls)):
         driver.get(urls[i])
-        driver.find_element(By.CSS_SELECTOR,
+        retries = 10
+        msg = f"{today}: No appointment available in url: {i + 1}"
+
+
+        # Tries to find the button for number of retries and breaks the loop once the element is clickable
+        for j in range(retries):
+            try:
+                driver.find_element(By.CSS_SELECTOR,
                             "input[type='submit'][aria-label='Ausländeramt Aachen, 2. Etage auswählen'][name='select_location'][value='Ausländeramt Aachen, 2. Etage auswählen']").click()
+                break
+            except exceptions.ElementClickInterceptedException as e:
+                time.sleep(1)
 
         try:
             driver.find_element(By.XPATH, "//*[contains(text(), 'Kein freier Termin verfügbar')]")
-            msg = f"{today}: No appointment available in team: {i + 1}"
 
+        except exceptions.NoSuchElementException as e:
+            msg = f"{today}: For url: {i+1} , not able to get the click button because of internet issue. Increase the retries limit."
         except Exception as e:
-            msg = f"{today}: -------------------   Appointment found in team: {i + 1} ----------------"
+            msg = f"{today}: -------------------   Appointment found in url: {i + 1} ----------------"
             elem = driver.find_element(By.XPATH, "//*")
             source_code = elem.get_attribute("outerHTML")
             with open('final_page.html', "w") as file:
@@ -51,5 +65,5 @@ def Check_appointment():
 
 Check_appointment()
 scheduler = BlockingScheduler()
-scheduler.add_job(Check_appointment, 'interval', hours=0.167)
+scheduler.add_job(Check_appointment, 'interval', hours=0.1)
 scheduler.start()
