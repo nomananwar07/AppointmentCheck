@@ -30,7 +30,7 @@ def Check_appointment():
 
     for i in range(len(urls)):
         driver.get(urls[i])
-        retries = 10
+        retries = 20
         msg = f"{today}: No appointment available in url: {i + 1}"
 
 
@@ -44,10 +44,10 @@ def Check_appointment():
                 time.sleep(1)
 
         try:
-            driver.find_element(By.XPATH, "//*[contains(text(), 'Kein freier Termin verfügbar')]")
-
-        except exceptions.NoSuchElementException as e:
-            msg = f"{today}: For url: {i+1} , not able to get the click button because of internet issue. Increase the retries limit."
+            if "https://termine.staedteregion-aachen.de/auslaenderamt/suggest" in driver.current_url:
+                driver.find_element(By.XPATH, "//*[contains(text(), 'Kein freier Termin verfügbar')]")
+            else:
+                msg = f"{today}: For url: {i+1} , not able to get the click button because of internet issue. Increase the retries limit."
         except Exception as e:
             msg = f"{today}: -------------------   Appointment found in url: {i + 1} ----------------"
             elem = driver.find_element(By.XPATH, "//*")
