@@ -10,4 +10,9 @@ Then run:
 
     pip install -r requirements.txt
     python selenium_test.py
-  
+
+Then create a `.env` file and add the following to it:
+
+    RECEIVER_EMAIL="<Receiver's email address>"
+    SENDER_EMAIL="<Sender's email address>"
+    SENDER_EMAIL_PASSWD="<Sender's email password>"
