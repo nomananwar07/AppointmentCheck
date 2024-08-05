@@ -123,7 +123,9 @@ def Check_appointment():
                 )
                 send_email(email_message)
                 # driver.save_screenshot(f"{today}.{i}.png");
-                with open(f"{today}.{i}.html", "w", encoding="utf-8") as f:
+                with open(
+                    f"{today.date()}.{i}.html", "w", encoding="utf-8"
+                ) as f:
                     f.write(driver.page_source)
                 for x in range(20):
                     print("\a")
